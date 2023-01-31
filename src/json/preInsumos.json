@@ -110,5 +110,13 @@
 		"unidadDeMedida": "Metro",
 		"min": 50,
 		"img": "Tejido de alambre"
+	},
+	{
+		"name": "Granza",
+		"stock": 100,
+		"details": "granza",
+		"unidadDeMedida": "Metro",
+		"min": 50,
+		"img": "Metro de granza"
 	}
 ]
