@@ -4,15 +4,16 @@ const { conn } = require("./src/db.js");
 const morgan = require("morgan");
 const { preload_insumos } = require("../server/src/utils/utilsMp");
 const { preload_products } = require("../server/src/utils/utilsProductos");
+const port = process.env.PORT || 3001;
 
 const app = express();
 
 app.use(morgan("dev"));
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(port, () => {
     preload_insumos();
     preload_products();
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
+    console.log(`listening at ${port}`); // eslint-disable-line no-console
   });
 });
