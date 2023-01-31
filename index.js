@@ -10,7 +10,7 @@ const app = express();
 
 app.use(morgan('dev'));
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
 	server.listen(port, () => {
 		preload_insumos();
 		preload_products();
