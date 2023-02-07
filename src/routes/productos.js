@@ -110,7 +110,7 @@ router.get("/:id", async (req, res) => {
         : res.status(404).send("No esta el detalle del producto");
     }
   } catch (error) {
-    console.log("ERROR EN RUTA GET PRODUCTOS ID");
+    console.log("ERROR EN RUTA GET PRODUCTOS ID", error);
   }
 });
 

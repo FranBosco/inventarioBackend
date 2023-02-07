@@ -45,10 +45,11 @@ const preload_insumos = async () => {
 //.........................................................................................//
 // CREAR INSUMO
 const create_mp = async (data) => {
-  const { name, stock, details, unidadDeMedida, min, img } = data;
   try {
+    let { name, stock, details, unidadDeMedida, min, img } = data;
+
     let new_load = await Insumos.create({
-      name,
+      name: name.toLowerCase()[0].toUpperCase(),
       stock,
       details,
       unidadDeMedida,
