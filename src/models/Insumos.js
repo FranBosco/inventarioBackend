@@ -5,6 +5,10 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      get() {
+        let aux = this.name;
+        return aux[0].toUpperCase();
+      },
     },
     img: {
       type: DataTypes.STRING,
