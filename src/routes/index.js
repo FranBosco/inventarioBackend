@@ -2,18 +2,20 @@ const { Router } = require("express");
 
 const router = Router();
 
-const insumos = require("./insumos");
+const login = require("./login");
 const insumosHome = require("./insumosHome");
-const productos = require("./productos");
 const productosHome = require("./productosHome");
-const ventas = require("./ventas");
+const insumos = require("./insumos");
+const productos = require("./productos");
 const produccion = require("./produccion");
+const ventas = require("./ventas");
 
-router.use("/insumos", insumos);
+router.use("/login", login);
 router.use("/insumosHome", insumosHome);
-router.use("/productos", productos);
 router.use("/productosHome", productosHome);
-router.use("/ventas", ventas);
+router.use("/insumos", insumos);
+router.use("/productos", productos);
 router.use("/produccion", produccion);
+router.use("/ventas", ventas);
 
 module.exports = router;
