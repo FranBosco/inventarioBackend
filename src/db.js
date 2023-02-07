@@ -41,7 +41,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Productos, Insumos, Insumosproductos } = sequelize.models;
+const { Productos, Insumos, Insumosproductos, Login } = sequelize.models;
 
 Insumos.belongsToMany(Productos, { through: Insumosproductos });
 Productos.belongsToMany(Insumos, { through: Insumosproductos });
