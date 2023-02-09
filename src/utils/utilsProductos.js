@@ -47,6 +47,8 @@ const create_product = async (data) => {
         },
       });
 
+      console.log("auxxxx", aux);
+
       let aux2 = element.cantidad;
 
       let new_cantidad = Insumosproductos.create({
