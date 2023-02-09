@@ -48,6 +48,8 @@ const create_mp = async (data) => {
   try {
     let { name, stock, details, unidadDeMedida, min, img } = data;
 
+    name = name.toLowerCase()[0].toUpperCase() + name.substring(1);
+
     let new_load = await Insumos.create({
       name,
       stock,

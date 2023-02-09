@@ -34,6 +34,8 @@ const create_product = async (data) => {
   try {
     let { name, stock, details, min, img, defaultInput } = data;
 
+    name = name.toLowerCase()[0].toUpperCase() + name.substring(1);
+
     let new_product = await Productos.create({
       name,
       stock,
