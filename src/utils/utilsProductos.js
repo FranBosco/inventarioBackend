@@ -27,12 +27,15 @@ const preload_products = async () => {
 
 //.........................................................................................//
 // CREAR PRODUCTO
+
+// : name.toLowerCase()[0].toUpperCase() + name.substring(1),
+
 const create_product = async (data) => {
   try {
     let { name, stock, details, min, img, defaultInput } = data;
 
     let new_product = await Productos.create({
-      name: name.toLowerCase()[0].toUpperCase() + name.substring(1),
+      name,
       stock,
       details,
       min,
@@ -47,7 +50,7 @@ const create_product = async (data) => {
         },
       });
 
-      console.log("auxxxx", aux);
+      // console.log("auxxxx", aux);
 
       let aux2 = element.cantidad;
 
