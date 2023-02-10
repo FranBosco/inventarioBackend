@@ -33,9 +33,8 @@ const preload_products = async () => {
 const create_product = async (data) => {
   try {
     let { name, stock, details, min, img, defaultInput } = data;
-
     let new_product = await Productos.create({
-      name: name.toLowerCase()[0].toUpperCase() + name.substring(1),
+      name: name[0].toUpperCase() + name.substring(1).toLowerCase(),
       stock,
       details,
       min,
@@ -43,28 +42,17 @@ const create_product = async (data) => {
       defaultInput,
     });
 
-    defaultInput.forEach(async (element) => {
-      let aux = await Insumos.findAll({
-        where: {
-          name: element.insumos,
-        },
-      });
-
-      console.log("aux", aux);
-      if (aux == undefined || aux == null || aux == 0) {
-        return;
-      }
-
-      let aux2 = element.cantidad;
-
-      let new_cantidad = Insumosproductos.create({
+    for (const element of defaultInput) {
+      const aux = await Insumos.findOne({ where: { name: element.insumos } });
+      if (!aux) continue;
+      await Insumosproductos.create({
         productoId: new_product.id,
-        insumoId: aux[0].dataValues.id,
-        cantidad: aux2,
+        insumoId: aux.id,
+        cantidad: element.cantidad,
       });
-    });
+    }
   } catch (error) {
-    console.log("ERROR en create_product", error);
+    console.error("ERROR en create_product", error);
   }
 };
 
