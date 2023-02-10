@@ -35,7 +35,7 @@ const create_product = async (data) => {
     let { name, stock, details, min, img, defaultInput } = data;
 
     let new_product = await Productos.create({
-      name,
+      name: name.toLowerCase()[0].toUpperCase() + name.substring(1),
       stock,
       details,
       min,
@@ -50,7 +50,10 @@ const create_product = async (data) => {
         },
       });
 
-      // console.log("auxxxx", aux);
+      console.log("aux", aux);
+      if (aux == undefined || aux == null || aux == 0) {
+        return;
+      }
 
       let aux2 = element.cantidad;
 
