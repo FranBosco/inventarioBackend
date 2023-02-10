@@ -1,23 +1,6 @@
 const { Insumos, Productos } = require("../db");
 const preInsumos = require("../json/preInsumos.json");
 
-// const mateiaPrima = async () => {
-//   try {
-//     let formateoMp = Insumos.map((insumos) => {
-//       return {
-//         nombre: insumos.nombre,
-//         stock: insumos.stock,
-//         details: insumos.details,
-//         unidadDeMedida: insumos.unidadDeMedida,
-//         minimo: insumos.minimo,
-//         img: insumos.img,
-//       };
-//     });
-//     return formateoMp;
-//   } catch (error) {
-//     console.log("ROMPO EN UTILS MATERIA", error);
-//   }
-// };
 //.........................................................................................//
 // CARGA JSON
 const preload_insumos = async () => {
@@ -48,16 +31,14 @@ const create_mp = async (data) => {
   try {
     let { name, stock, details, unidadDeMedida, min, img } = data;
 
-    let new_load = await Insumos.create({
-      name: name.toLowerCase()[0].toUpperCase() + name.substring(1),
+    await Insumos.create({
+      name: name.charAt(0).toUpperCase() + name.slice(1),
       stock,
       details,
       unidadDeMedida,
       min,
       img,
     });
-
-    return new_load;
   } catch (error) {
     console.log("ROMPO EN UTILS, CREATE MP", error);
   }
