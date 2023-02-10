@@ -1,16 +1,11 @@
 const { Login } = require("../db");
 const preLogin = require("../json/preLogin.json");
 
-const create_login = async (data) => {
+const create_login = async ({ user, password }) => {
   try {
-    let { user, password } = data;
-
-    let new_login = await Login.create({
-      user,
-      password,
-    });
+    await Login.create({ user, password });
   } catch (error) {
-    console.log("ERROR en create_product", error);
+    console.log("ERROR en create_login", error);
   }
 };
 
