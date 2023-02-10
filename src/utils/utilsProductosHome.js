@@ -4,17 +4,11 @@ const { Insumos, Productos } = require("../db");
 // OBTENER PRODUCTO
 const get_product_home = async () => {
   try {
-    let data = await Productos.findAll();
-
-    let dataSort = data.sort((a, b) => {
-      if (a.difference > b.difference) return 1;
-      if (b.difference > a.difference) return -1;
-      return 0;
-    });
-
-    let dataSlice = dataSort.slice(0, 7);
-
-    return dataSlice;
+    return await Productos.findAll()
+      .then((data) =>
+        data.sort((a, b) => (a.difference > b.difference ? 1 : -1))
+      )
+      .then((dataSort) => dataSort.slice(0, 7));
   } catch (error) {
     console.log("ERROR en get_product_home", error);
   }

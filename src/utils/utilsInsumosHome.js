@@ -1,23 +1,17 @@
-const { Insumos, Productos } = require('../db');
+const { Insumos, Productos } = require("../db");
 
 //.........................................................................................//
 // OBTENER PRODUCTO
 const get_insumos_home = async () => {
-	try {
-		let data = await Insumos.findAll();
-
-		let dataSort = data.sort((a, b) => {
-			if (a.difference > b.difference) return 1;
-			if (b.difference > a.difference) return -1;
-			return 0;
-		});
-
-		let dataSlice = dataSort.slice(0, 7);
-
-		return dataSlice;
-	} catch (error) {
-		console.log('ERROR en get_insumos_home', error);
-	}
+  try {
+    return await Insumos.findAll()
+      .then((data) =>
+        data.sort((a, b) => (a.difference > b.difference ? 1 : -1))
+      )
+      .then((dataSort) => dataSort.slice(0, 7));
+  } catch (error) {
+    console.log("ERROR en get_insumos_home", error);
+  }
 };
 
 module.exports = { get_insumos_home };
