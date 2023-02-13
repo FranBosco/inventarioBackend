@@ -25,10 +25,9 @@ router.post("/", async (req, res) => {
 // GET /insumos
 router.get("/", async (req, res) => {
   try {
-    let { name } = req.query;
     let data = await materiaPrima_load();
 
-    if (name) {
+    if (req.query.name) {
       let data_insumos = data.filter((mp) =>
         mp.name.toLowerCase().includes(name.toLocaleLowerCase())
       );
@@ -63,35 +62,6 @@ router.get("/", async (req, res) => {
 
       return res.status(200).send(data_total);
     }
-
-    // if (req.query.property === "difference" && req.query.order === "DESC") {
-    // let data = await Insumos.findAll();
-
-    // let dataSort = data.sort((a, b) => {
-    // 	if (a.difference > b.difference) return 1;
-    // 	if (b.difference > a.difference) return -1;
-    // 	return 0;
-    // });
-
-    // return res.status(200).send(dataSort);
-    // }
-
-    // if (req.query.property === "difference" && req.query.order === "ASC") {
-    // let data = await Insumos.findAll();
-
-    // let dataSort = data.sort((a, b) => {
-    // 	if (a.difference > b.difference) return -1;
-    // 	if (b.difference > a.difference) return 1;
-    // 	return 0;
-    // });
-    // return res.status(200).send(dataSort);
-    // } else {
-    // let data_total = await Insumos.findAll({
-    // 	order: [[req.query.property, req.query.order]],
-    // });
-
-    // return res.status(200).send(data_total);
-    // }
   } catch (error) {
     console.log("Rompo en rutaGet MP", error);
   }

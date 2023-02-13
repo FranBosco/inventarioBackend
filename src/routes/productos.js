@@ -36,40 +36,36 @@ router.post("/", async (req, res) => {
 // GET /productos
 router.get("/", async (req, res) => {
   try {
-    let { name } = req.query;
     let data = await get_product();
 
-    if (name) {
+    if (req.query.name) {
       let data_product = data.filter((prod) =>
         prod.name.toLowerCase().includes(name.toLowerCase())
       );
 
-      data_product.length > 0
+      return data_product.length > 0
         ? res.status(200).send(data_product)
         : res.status(404).send("No se encontro el producto");
     }
 
-    if (req.query.property === "difference" && req.query.order === "DESC") {
+    if (req.query.property === "difference") {
       let data = await Productos.findAll();
 
-      let dataSort = data.sort((a, b) => {
-        if (a.difference > b.difference) return 1;
-        if (b.difference > a.difference) return -1;
-        return 0;
-      });
-
-      return res.status(200).send(dataSort);
-    }
-
-    if (req.query.property === "difference" && req.query.order === "ASC") {
-      let data = await Productos.findAll();
-
-      let dataSort = data.sort((a, b) => {
-        if (a.difference > b.difference) return -1;
-        if (b.difference > a.difference) return 1;
-        return 0;
-      });
-      return res.status(200).send(dataSort);
+      if (req.query.order === "DESC") {
+        let dataSort = data.sort((a, b) => {
+          if (a.difference > b.difference) return 1;
+          if (b.difference > a.difference) return -1;
+          return 0;
+        });
+        return res.status(200).send(dataSort);
+      } else {
+        let dataSort = data.sort((a, b) => {
+          if (a.difference > b.difference) return -1;
+          if (b.difference > a.difference) return 1;
+          return 0;
+        });
+        return res.status(200).send(dataSort);
+      }
     } else {
       let data_total = await Productos.findAll({
         order: [[req.query.property, req.query.order]],

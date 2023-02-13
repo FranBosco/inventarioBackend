@@ -19,7 +19,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
     },
     defaultInput: {
-      // type: DataTypes.ARRAY(DataTypes.STRING, DataTypes.INTEGER),
       type: DataTypes.ARRAY(DataTypes.JSON),
     },
     difference: {
