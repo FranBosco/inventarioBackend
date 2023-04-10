@@ -2,13 +2,13 @@ const { Router } = require("express");
 
 const router = Router();
 
-const login = require("./login");
-const insumosHome = require("./insumosHome");
-const productosHome = require("./productosHome");
-const insumos = require("./insumos");
-const productos = require("./productos");
-const produccion = require("./produccion");
-const ventas = require("./ventas");
+const login = require("./login.routes");
+const insumosHome = require("./insumosHome.routes");
+const productosHome = require("./productosHome.routes");
+const insumos = require("./insumos.routes");
+const productos = require("./productos.routes");
+const produccion = require("./produccion.routes");
+const ventas = require("./ventas.routes");
 
 router.use("/login", login);
 router.use("/insumosHome", insumosHome);
